@@ -40,6 +40,8 @@ async def automate(request: IntentRequest, background_tasks: BackgroundTasks):
         session_id=session_id
     )
     
+    # await main_agent.process_intent(intent=request.intent, task_id=task_id, session_id=session_id)
+    
     return AutomationResponse(
         task_id=task_id,
         status="processing",

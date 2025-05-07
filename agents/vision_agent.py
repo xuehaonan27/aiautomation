@@ -4,6 +4,7 @@ from utils.logger import get_logger
 from utils.error_handler import handle_error, VisionError
 import config
 import re
+import os
 
 logger = get_logger(__name__)
 
@@ -29,8 +30,11 @@ class VisionAgent(BaseAgent):
         except Exception as e:
             raise VisionError(f"Failed to read screenshot: {str(e)}")
         
+        # Get the format of the screenshot
+        ext = os.path.splitext(screenshot_path)[1]
+        
         base64_image = base64.b64encode(image_data).decode('utf-8')
-        image_data_url = f"data:image/png;base64,{base64_image}"
+        image_data_url = f"data:image/{ext};base64,{base64_image}"
         
         # Prepare the message with the reference prompt
         messages = [

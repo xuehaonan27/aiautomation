@@ -29,6 +29,8 @@ class MainAgent(BaseAgent):
     @handle_error
     async def process_intent(self, intent, task_id, session_id):
         """Process the user's intent and coordinate the automation."""
+        
+        logger.debug("Invoked MainAgent.process_intent")
         try:
             # Update task status
             self.state_manager.update_task_status(
